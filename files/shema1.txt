@@ -1,0 +1,372 @@
+﻿ <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 sp1 (http://www.altova.com) by kulemzina (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ОценкаПерсонала">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Организация" type="xs:integer" nillable="false"/>
+				<xs:element name="ДанныеОценки" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ЛичныеДанные" type="ЛичныеДанныеСотрудника"/>
+							<xs:choice>
+								<xs:element name="РСС">
+									<xs:complexType>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element name="Образование" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидДокументаОбОбразовании" type="ВидыДокументовОбОбразованииРСС"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СтажРаботы" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЛетСтажа">
+															<xs:simpleType>
+																<xs:restriction base="xs:duration">
+																	<xs:pattern value="P[0-9]{1,3}Y"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="ДатаСтажа" type="xs:date" use="optional"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОтсутствиеНарушенийПроизводственнойДисциплины">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="ОтсутствиеНарушенийПрочие"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОтсутствиеДисциплинарныхНарушений">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="ОтсутствиеНарушенийПрочие"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="НаличиеНаградПоощрений" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидНаграды" type="ВидыНаград"/>
+													</xs:sequence>
+													<xs:attribute name="НаименованиеНаграды" use="required"/>
+													<xs:attribute name="ДатаНаграды" type="xs:date" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОценкаЗнанийУправленческихКомпетенций" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ОценкаБаллы" type="xs:short"/>
+													</xs:sequence>
+													<xs:attribute name="НаименованиеТеста" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ПобедительКонкурсаПрофессионалов" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Этап" type="ЭтапыКонкурсаПрофессионалов">
+															<xs:annotation>
+																<xs:documentation source="Этап конкурса Профессионалы РУСАЛА"/>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СостоитВКадровомРезерве" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидРезерва" type="ВидыКадровогоРезерва"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Наставничество">
+												<xs:complexType>
+													<xs:attribute name="ПодтверждающийДокумент" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="УполномоченныйПоКорпоративнойЭтике">
+												<xs:complexType>
+													<xs:attribute name="ПодтверждающийДокумент" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СостояниеЗдоровья">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ГруппаЗдоровья" type="ГруппыЗдоровья"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="УчастиеВПроектах" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:attribute name="ГодПроекта" type="xs:gYear" use="required"/>
+													<xs:attribute name="НаименованиеПроекта" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ПрохождениеОбученияПоДополнительнымУчебнымПрограммам" maxOccurs="3">
+												<xs:complexType>
+													<xs:attribute name="НаименованиеПрограммы" type="xs:string" use="required"/>
+													<xs:attribute name="ДатаПрохожденияОбучения" type="xs:date" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОценкаПоЦелям" type="xs:boolean"/>
+											<xs:element name="ВыработкаРабочегоВремени">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="КоэффициентВыработки">
+															<xs:simpleType>
+																<xs:restriction base="xs:integer">
+																	<xs:minInclusive value="1"/>
+																	<xs:maxInclusive value="100"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СпециальныеЗнанияИУмения" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="СпециальныеЗнанияИУмения"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Рабочие">
+									<xs:complexType>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element name="Образование" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидДокументаОбОбразовании" type="ВидыДокументовОбОбразованииРабочие"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СтажРаботы" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЛетСтажа">
+															<xs:simpleType>
+																<xs:restriction base="xs:duration">
+																	<xs:pattern value="P[0-9]{1,3}Y"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Список" type="СпискиВредныхПроизводств"/>
+													</xs:sequence>
+													<xs:attribute name="ДатаСтажа" type="xs:date" use="optional"/>
+													<xs:attribute name="Профессия" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="КвалификацияРаботника">
+												<xs:complexType>
+													<xs:attribute name="Разряд" use="required"/>
+													<xs:attribute name="Профессия" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОтсутствиеНарушенийПроизводственнойДисциплины" maxOccurs="2">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="ОтсутствиеНарушенийПроизводственнойДисциплиныРабочие"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОтсутствиеДисциплинарныхНарушений">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="ОтсутствиеНарушенийПрочие"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="НаличиеНаградПоощрений" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидНаграды" type="ВидыНаград"/>
+													</xs:sequence>
+													<xs:attribute name="НаименованиеНаграды" use="required"/>
+													<xs:attribute name="ДатаНаграды" type="xs:date" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ОценкаПрофессиональныхЗнанийПоОТиПБ" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ОценкаБаллы" type="xs:short"/>
+													</xs:sequence>
+													<xs:attribute name="НаименованиеТеста" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СостоитВКадровомРезерве" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ВидРезерва" type="ВидыКадровогоРезерва"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ПобедительКонкурсаПрофессионалов" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Этап" type="ЭтапыКонкурсаПрофессионалов">
+															<xs:annotation>
+																<xs:documentation source="Этап конкурса Профессионалы РУСАЛА"/>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ИнструкторПроизводственногоОбучения">
+												<xs:complexType>
+													<xs:attribute name="ПодтверждающийДокумент" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="УполномоченныйПоКорпоративнойЭтике">
+												<xs:complexType>
+													<xs:attribute name="ПодтверждающийДокумент" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СостояниеЗдоровья">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ГруппаЗдоровья" type="ГруппыЗдоровья"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий" type="xs:string"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="УчастиеВПроектах" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:attribute name="ГодПроекта" type="xs:gYear" use="required"/>
+													<xs:attribute name="НаименованиеПроекта" type="xs:string" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ПрохождениеОбученияПоДополнительнымУчебнымПрограммам" maxOccurs="3">
+												<xs:complexType>
+													<xs:attribute name="НаименованиеПрограммы" type="xs:string" use="required"/>
+													<xs:attribute name="ДатаПрохожденияОбучения" type="xs:date" use="required"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ВыработкаРабочегоВремени">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="КоэффициентВыработки">
+															<xs:simpleType>
+																<xs:restriction base="xs:integer">
+																	<xs:minInclusive value="1"/>
+																	<xs:maxInclusive value="100"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="СпециальныеЗнанияИУмения" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ЗначЭлемента" type="СпециальныеЗнанияИУмения"/>
+													</xs:sequence>
+													<xs:attribute name="Комментарий"/>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ЛичныеДанныеСотрудника">
+		<xs:sequence>
+			<xs:element name="ТабНомерВКадровойСистеме" type="xs:string"/>
+			<xs:element name="ФамилияИмяОтчество" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ВидыДокументовОбОбразованииРСС">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Диплом"/>
+			<xs:enumeration value="ДипломДополнительный"/>
+			<xs:enumeration value="УдостоверениеОПовышенииКвалификации"/>
+			<xs:enumeration value="УдостоверениеПоЗаконодательству"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ВидыДокументовОбОбразованииРабочие">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Диплом"/>
+			<xs:enumeration value="УдостоверениеПоОсновнойПрофессии"/>
+			<xs:enumeration value="УдостоверениеПоСмежнойПрофессии"/>
+			<xs:enumeration value="УдостоверенияПрочие"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СпискиВредныхПроизводств">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Список_1"/>
+			<xs:enumeration value="Список_2"/>
+			<xs:enumeration value="Общий"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ГруппыЗдоровья">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Д1"/>
+			<xs:enumeration value="Д2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ВидыНаград">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Государственные"/>
+			<xs:enumeration value="Корпоративные"/>
+			<xs:enumeration value="Ведомственные"/>
+			<xs:enumeration value="Прочие"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="СпециальныеЗнанияИУмения">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Преподаватель"/>
+			<xs:enumeration value="Руководство"/>
+			<xs:enumeration value="ЗнаниеИностранногоЯзыка"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ВидыКадровогоРезерва">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Оперативный"/>
+			<xs:enumeration value="Перспективный"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ЭтапыКонкурсаПрофессионалов">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Заводской"/>
+			<xs:enumeration value="Корпоративный"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОтсутствиеНарушенийПроизводственнойДисциплиныРабочие">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ОтсутствиеНарушений"/>
+			<xs:enumeration value="ОтсутствиеНарушенийНевыполненияПлана"/>
+			<xs:enumeration value="НаличиеНарушений"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ОтсутствиеНарушенийПрочие">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ОтсутствиеНарушений"/>
+			<xs:enumeration value="НаличиеНарушений"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
