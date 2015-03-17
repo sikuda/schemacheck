@@ -3,7 +3,6 @@
 
 int main(int argc, char* argv[])
 {
-    Q_INIT_RESOURCE(schema);
     QApplication app(argc, argv);
 
     QString locale = QLocale::system().name();

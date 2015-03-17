@@ -1,4 +1,8 @@
 #include <QtGui>
+#include <QMenu>
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QMessageBox>
 #include <QtXmlPatterns>
 
 #include "mainwindow.h"
