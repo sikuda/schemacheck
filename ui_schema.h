@@ -10,20 +10,20 @@
 #ifndef UI_SCHEMA_H
 #define UI_SCHEMA_H
 
-#include <QtCore/QLocale>
-#include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QMainWindow>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QProgressBar>
-#include <QtGui/QPushButton>
-#include <QtGui/QStatusBar>
-#include <QtGui/QWidget>
+#include <QLocale>
+#include <QVariant>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QMainWindow>
+#include <QPlainTextEdit>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QStatusBar>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -129,12 +129,12 @@ public:
 
     void retranslateUi(QMainWindow *SchemaMainWindow)
     {
-        SchemaMainWindow->setWindowTitle(QApplication::translate("SchemaMainWindow", "XML Schema Validation", 0, QApplication::UnicodeUTF8));
-        schemaLabel->setText(QApplication::translate("SchemaMainWindow", "XML Schema Document:", 0, QApplication::UnicodeUTF8));
-        instanceLabel->setText(QApplication::translate("SchemaMainWindow", "XML Instance Document:", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("SchemaMainWindow", "Status:", 0, QApplication::UnicodeUTF8));
-        validateButton->setText(QApplication::translate("SchemaMainWindow", "Validate", 0, QApplication::UnicodeUTF8));
-        validationStatus->setText(QApplication::translate("SchemaMainWindow", "not validated", 0, QApplication::UnicodeUTF8));
+        SchemaMainWindow->setWindowTitle(QApplication::translate("SchemaMainWindow", "XML Schema Validation", 0));
+        schemaLabel->setText(QApplication::translate("SchemaMainWindow", "XML Schema Document:", 0));
+        instanceLabel->setText(QApplication::translate("SchemaMainWindow", "XML Instance Document:", 0));
+        label->setText(QApplication::translate("SchemaMainWindow", "Status:", 0));
+        validateButton->setText(QApplication::translate("SchemaMainWindow", "Validate", 0));
+        validationStatus->setText(QApplication::translate("SchemaMainWindow", "not validated", 0));
     } // retranslateUi
 
 };
